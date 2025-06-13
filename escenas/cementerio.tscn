@@ -1,60 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://2c7bjbpi58wm"]
+[gd_scene load_steps=3 format=3 uid="uid://2c7bjbpi58wm"]
 
-[ext_resource type="Texture2D" uid="uid://s7vu3cifcf4w" path="res://assets/personaje/run-1.png" id="1_8ll23"]
-[ext_resource type="Texture2D" uid="uid://cdi4rstymtdm4" path="res://assets/personaje/run-2.png" id="2_m6evc"]
-[ext_resource type="Texture2D" uid="uid://ce14ci3phrwfd" path="res://assets/personaje/run-3.png" id="3_5c3bo"]
-[ext_resource type="Texture2D" uid="uid://taisxy7l8if5" path="res://assets/personaje/run-4.png" id="4_xrrsm"]
-[ext_resource type="Texture2D" uid="uid://dvodsc4pgev4u" path="res://assets/personaje/run-5.png" id="5_afkfy"]
-[ext_resource type="Texture2D" uid="uid://n5fxap84hor0" path="res://assets/personaje/run-6.png" id="6_kuhor"]
-[ext_resource type="Texture2D" uid="uid://cr2d6hfuyfx74" path="res://assets/personaje/run-7.png" id="7_4lglm"]
-[ext_resource type="Texture2D" uid="uid://cn4vhj4x15hli" path="res://assets/personaje/run-8.png" id="8_vphhd"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qoxgd"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_8ll23")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_m6evc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_5c3bo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_xrrsm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_afkfy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_kuhor")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_4lglm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_vphhd")
-}],
-"loop": true,
-"name": &"run",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://ccuxqkmwyig8f" path="res://escenas/level01.tscn" id="1_78dp4"]
+[ext_resource type="PackedScene" uid="uid://chleekigqsju5" path="res://escenas/jugador.tscn" id="2_debkd"]
 
 [node name="Cementerio" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="TileMap" parent="." instance=ExtResource("1_78dp4")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-sprite_frames = SubResource("SpriteFrames_qoxgd")
-animation = &"run"
-frame = 7
-frame_progress = 0.76321
+[node name="Jugador" parent="." instance=ExtResource("2_debkd")]
 
-[node name="TileMap" type="TileMap" parent="."]
-format = 2
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-42, -1)

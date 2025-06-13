@@ -1,7 +1,23 @@
-[gd_scene format=3 uid="uid://dd6nxk8hl3pom"]
+[gd_scene load_steps=4 format=3 uid="uid://dd6nxk8hl3pom"]
+
+[ext_resource type="Texture2D" uid="uid://dexarnnnpjood" path="res://assets/mundo/casa/elementos/loot.png" id="1_2gf2k"]
+[ext_resource type="Script" path="res://escenas/area_2d.gd" id="1_y4o2y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dptmw"]
+size = Vector2(20, 22.5542)
 
 [node name="Portal" type="Sprite2D"]
+scale = Vector2(3.53516, 4.29282)
 
 [node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_y4o2y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_2gf2k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -11.4741)
+scale = Vector2(1.6711, -1.19482)
+shape = SubResource("RectangleShape2D_dptmw")
+
+[connection signal="body_shape_entered" from="Area2D" to="Area2D" method="_on_body_shape_entered"]

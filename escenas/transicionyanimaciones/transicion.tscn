@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://srii6f20xef1"]
+
+[ext_resource type="Texture2D" uid="uid://cyrvro0xwgwph" path="res://assets/backgrounds/negro.jpg" id="1_6wdku"]
+
+[sub_resource type="Animation" id="Animation_j5o1b"]
+resource_name = "Fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0313726, 0.0313726, 0.0313726, 1), Color(0.0313726, 0.0313726, 0.0313726, 0.160784)]
+}
+
+[sub_resource type="Animation" id="Animation_d6e2m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o7rtx"]
+_data = {
+"Fade_out": SubResource("Animation_j5o1b"),
+"RESET": SubResource("Animation_d6e2m")
+}
+
+[node name="transicion" type="Node2D"]
+
+[node name="negro" type="Sprite2D" parent="."]
+texture = ExtResource("1_6wdku")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="negro"]
+libraries = {
+"": SubResource("AnimationLibrary_o7rtx")
+}

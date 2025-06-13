@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://rdo8ua4ia8r2"]
+
+[ext_resource type="PackedScene" uid="uid://ccuxqkmwyig8f" path="res://escenas/level01.tscn" id="1_s50me"]
+[ext_resource type="PackedScene" uid="uid://chleekigqsju5" path="res://escenas/jugador.tscn" id="2_xwkb1"]
+[ext_resource type="PackedScene" uid="uid://dd6nxk8hl3pom" path="res://escenas/portal.tscn" id="3_xx4hc"]
+[ext_resource type="Texture2D" uid="uid://cyrvro0xwgwph" path="res://assets/backgrounds/negro.jpg" id="4_d74wa"]
+
+[sub_resource type="Animation" id="Animation_j5o1b"]
+resource_name = "Fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0313726, 0.0313726, 0.0313726, 1), Color(0.0313726, 0.0313726, 0.0313726, 0.160784)]
+}
+
+[sub_resource type="Animation" id="Animation_d6e2m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o7rtx"]
+_data = {
+"Fade_out": SubResource("Animation_j5o1b"),
+"RESET": SubResource("Animation_d6e2m")
+}
+
+[node name="Prueba" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_s50me")]
+
+[node name="Jugador" parent="TileMap" instance=ExtResource("2_xwkb1")]
+scale = Vector2(4.12333, 4.71827)
+
+[node name="Camera2D" type="Camera2D" parent="TileMap/Jugador"]
+scale = Vector2(-178.135, 3.90019)
+
+[node name="Portal" parent="." instance=ExtResource("3_xx4hc")]
+position = Vector2(-127, 303)
+scale = Vector2(3.53516, 4.29282)
+
+[node name="negro" type="Sprite2D" parent="."]
+position = Vector2(-169, -138.25)
+scale = Vector2(1.3625, 1.78125)
+texture = ExtResource("4_d74wa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="negro"]
+libraries = {
+"": SubResource("AnimationLibrary_o7rtx")
+}
+autoplay = "Fade_out"
